@@ -1,4 +1,4 @@
-// Copyright 2021 NNTU-CS
+#include <iostream>
 #include <string>
 #include <map>
 #include "tstack.h"
@@ -60,25 +60,25 @@ void action(char x, TStack<char, 100>* stack, std::string *ostr) {
 }
 
 std::string infx2pstfx(std::string inf) {
-  TStack<char, 100> stack1;
-  std::string res = "";
-  std::string res1 = "";
-  int code;
-  for (int i = 0; i < inf.length(); ++i) {
-      if (isInt(inf[i])) {
-          res += inf[i];
-      } else {
-          if (priority(inf[i]) != 0)
-              res += " ";
-          action(inf[i], &stack1, &res);
-      }
-  }
-  while (!stack1.isEmpty()) {
-      res += " ";
-      res += stack1.get();
-      stack1.pop();
-  }
-  return res;
+    TStack<char, 100> stack1;
+    std::string res = "";
+    std::string res1 = "";
+    int code;
+    for (int i = 0; i < inf.length(); ++i) {
+        if (isInt(inf[i])) {
+            res += inf[i];
+        } else {
+            if (priority(inf[i]) != 0)
+                res += " ";
+            action(inf[i], &stack1, &res);
+        }
+    }
+    while (!stack1.isEmpty()) {
+        res += " ";
+        res += stack1.get();
+        stack1.pop();
+    }
+    return res;
 }
 
 int calculator(int a, int b, char act) {
