@@ -1,10 +1,11 @@
+// Copyright 2021 NNTU-CS
 #include <iostream>
 #include <string>
 #include <map>
 #include "tstack.h"
 
 bool isInt(char x) {
-    if ((int)x >= 48 && (int)x <= 57) {
+    if (static_cast<int>(x) >= 48 && static_cast<int>(x) <= 57) {
         return true;
     }
     return false;
@@ -37,8 +38,7 @@ void action(char x, TStack<char, 100>* stack, std::string *ostr) {
             if (symb != '(') {
                 *ostr += symb;
                 flag = false;
-            }
-            else {
+            } else {
                 flag = true;
             }
             stack->pop();
@@ -84,9 +84,9 @@ std::string infx2pstfx(std::string inf) {
 int calculator(int a, int b, char act) {
     if (act == '+')
         return a + b;
-    if(act == '-')
+    if (act == '-')
         return a - b;
-    if(act == '*')
+    if (act == '*')
         return a * b;
     if (act == '/')
         return a / b;
