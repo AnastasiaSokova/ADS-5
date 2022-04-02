@@ -65,6 +65,7 @@ void action(char x, TStack<char, 100>* stack, std::string *ostr) {
                 }
             } else {
                 stack->pop();
+                break;
             }
         }
     } else if (code == 2 || code == 3) {
