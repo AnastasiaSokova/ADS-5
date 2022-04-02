@@ -25,6 +25,24 @@ int priority(char x) {
         return -1;
 }
 
+std::string ToRightStr(std::string istr) {
+    std::string ostr = "";
+    bool flag = false;
+    for (int i = 0; i < istr.length(); ++i) {
+        if (!flag) {
+            ostr += istr[i];
+            if (istr[i] == ' ')
+                flag = true;
+        } else {
+            if (istr[i] != ' ') {
+                flag = false;
+                ostr += istr[i];
+            }
+        }
+    }
+    return ostr;
+}
+
 void action(char x, TStack<char, 100>* stack, std::string *ostr) {
     int code;
     char symb;
@@ -88,7 +106,7 @@ std::string infx2pstfx(std::string inf) {
         res += stack1.get();
         stack1.pop();
     }
-    return res;
+    return ToRightStr(res);
 }
 
 int calculator(int a, int b, char act) {
