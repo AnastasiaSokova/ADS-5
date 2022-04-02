@@ -45,8 +45,7 @@ void action(char x, TStack<char, 100>* stack, std::string *ostr) {
                         *ostr += " ";
                     stack->push(symb);
                 }
-            }
-            else {
+            } else {
                 stack->pop();
             }
         }
