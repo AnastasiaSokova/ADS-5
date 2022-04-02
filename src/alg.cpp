@@ -26,7 +26,6 @@ int priority(char x) {
 }
 
 void action(char x, TStack<char, 100>* stack, std::string *ostr) {
-    bool flag = false;
     int code;
     char symb;
     code = priority(x);
@@ -36,15 +35,20 @@ void action(char x, TStack<char, 100>* stack, std::string *ostr) {
     } else if (code == 1) {
         while (!stack->isEmpty()) {
             symb = stack->get();
-            if (flag)
-                *ostr += " ";
             if (symb != '(') {
                 *ostr += symb;
-                flag = false;
-            } else {
-                flag = true;
+                stack->pop();
+                if (!stack->isEmpty()) {
+                    symb = stack->get();
+                    stack->pop();
+                    if (!stack->isEmpty())
+                        *ostr += " ";
+                    stack->push(symb);
+                }
             }
-            stack->pop();
+            else {
+                stack->pop();
+            }
         }
     } else if (code == 2 || code == 3) {
         if (code > priority(stack->get()) || stack->isEmpty()) {
