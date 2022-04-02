@@ -1,8 +1,8 @@
 // Copyright 2021 NNTU-CS
+#include <math.h>
 #include <iostream>
 #include <string>
 #include <map>
-#include <math.h>
 #include "tstack.h"
 
 bool isInt(char x) {
@@ -21,8 +21,8 @@ int priority(char x) {
         return 2;
     if (x == '*' || x == '/')
         return 3;
-    else 
-        throw "Error !";
+    else
+        return -1;
 }
 
 void action(char x, TStack<char, 100>* stack, std::string *ostr) {
