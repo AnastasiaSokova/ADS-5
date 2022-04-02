@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <math.h>
 #include "tstack.h"
 
 bool isInt(char x) {
@@ -20,6 +21,8 @@ int priority(char x) {
         return 2;
     if (x == '*' || x == '/')
         return 3;
+    else 
+        throw "Error !";
 }
 
 void action(char x, TStack<char, 100>* stack, std::string *ostr) {
@@ -90,6 +93,7 @@ int calculator(int a, int b, char act) {
         return a * b;
     if (act == '/')
         return a / b;
+    return -1000000;
 }
 
 int toInt(char x) {
@@ -106,6 +110,7 @@ int StrToInt(std::string str) {
 
 int eval(std::string pref) {
     TStack<int, 100> stack2;
+    std::string str = "";
     int a, b, res;
     for (int i = 0; i < pref.length(); ++i) {
         if (isInt(pref[i])) {
