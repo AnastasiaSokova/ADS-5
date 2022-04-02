@@ -52,7 +52,13 @@ void action(char x, TStack<char, 100>* stack, std::string *ostr) {
         } else {
             while (!stack->isEmpty()) {
                 symb = stack->get();
-                *ostr += symb;
+                if (symb == '(') {
+                    break;
+                }
+                if (priority(symb) >= code) {
+                    *ostr += symb;
+                    *ostr += " ";
+                }
                 stack->pop();
             }
             stack->push(x);
