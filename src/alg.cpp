@@ -96,12 +96,24 @@ int toInt(char x) {
     return x - '0';
 }
 
+int StrToInt(std::string str) {
+    int res = 0;
+    for (int i = str.length(); i > 0; --i) {
+        res += (str[str.length() - i] - '0') * pow(10, i - 1);
+    }
+    return res;
+}
+
 int eval(std::string pref) {
     TStack<int, 100> stack2;
     int a, b, res;
     for (int i = 0; i < pref.length(); ++i) {
         if (isInt(pref[i])) {
-            stack2.push(toInt(pref[i]));
+            str += pref[i];
+            if (pref[i + 1] == ' ') {
+                stack2.push(StrToInt(str));
+                str = "";
+            }
         } else if (pref[i] != ' ') {
             a = stack2.get();
             stack2.pop();
